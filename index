@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Training - Intelligence Professionals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-tab {
+            padding: 1rem 2rem;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .nav-tab:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .module {
+            margin-bottom: 3rem;
+        }
+
+        .module h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .module h3 {
+            color: #764ba2;
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+
+        .danger-box {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+
+        .exercise-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border: 2px solid #667eea;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .exercise-box h4 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .prompt-example {
+            background: #2d2d2d;
+            color: #00ff00;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .card h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .tool-link:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #667eea;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.6rem;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+        }
+
+        .timeline-time {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .checklist li::before {
+            content: '✓';
+            position: absolute;
+            left: 0.8rem;
+            color: #28a745;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .video-placeholder {
+            background: #2d2d2d;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 1rem 0.5rem 1rem 0;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-tab {
+                width: 100%;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .quiz-container {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 2rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .quiz-option {
+            padding: 1rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: #667eea;
+        }
+
+        .quiz-option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .quiz-option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 AI voor Intelligence Professionals</h1>
+        <p>Praktische training - Artificial Intelligence in de praktijk</p>
+        <p style="font-size: 0.9rem; margin-top: 1rem;">Dinsdag • 5 uur • Interactief</p>
+    </div>
+
+    <div class="container">
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('agenda')">📅 Agenda</button>
+            <button class="nav-tab" onclick="showSection('deel1')">1️⃣ AI Fundamentals</button>
+            <button class="nav-tab" onclick="showSection('deel2')">2️⃣ AI Tools</button>
+            <button class="nav-tab" onclick="showSection('deel3')">3️⃣ Dark Side</button>
+            <button class="nav-tab" onclick="showSection('deel4')">4️⃣ Praktijk</button>
+            <button class="nav-tab" onclick="showSection('resources')">📚 Resources</button>
+        </div>
+
+        <!-- AGENDA SECTIE -->
+        <div id="agenda" class="content-section active">
+            <div class="module">
+                <h2>📅 Agenda - Halve Dag Training</h2>
+                
+                <div class="info-box">
+                    <strong>🎯 Leerdoelen:</strong>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>AI begrijpen en effectief gebruiken voor intelligence werk</li>
+                        <li>Prompting technieken beheersen</li>
+                        <li>AI-dreigingen herkennen (deepfakes, desinformatie)</li>
+                        <li>Ethische overwegingen en privacy begrijpen</li>
+                    </ul>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">09:00 - 09:30 (30 min)</div>
+                        <h3>Welkom & Introductie</h3>
+                        <ul>
+                            <li>Kennismaking</li>
+                            <li>Verwachtingen & leerdoelen</li>
+                            <li>Interactieve quiz: Wat weet je al van AI?</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">09:30 - 10:30 (60 min)</div>
+                        <h3>Deel 1: AI Fundamentals</h3>
+                        <ul>
+                            <li>Wat is AI eigenlijk? (begrijpelijk uitgelegd)</li>
+                            <li>ChatGPT, Claude, Gemini - wat zijn de verschillen?</li>
+                            <li>Live demo: wat kan AI wel en niet</li>
+                            <li>Eerste hands-on oefening</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">10:30 - 10:45 (15 min)</div>
+                        <h3>☕ Pauze</h3>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">10:45 - 11:30 (45 min)</div>
+                        <h3>Deel 2: AI Tools voor Intelligence</h3>
+                        <ul>
+                            <li>Prompting technieken (de kunst van het goede vragen stellen)</li>
+                            <li>OSINT met AI ondersteuning</li>
+                            <li>Document analyse en samenvatten</li>
+                            <li>Hands-on: Echte cases analyseren</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">11:30 - 12:15 (45 min)</div>
+                        <h3>Deel 3: The Dark Side of AI</h3>
+                        <ul>
+                            <li>Deepfakes herkennen</li>
+                            <li>AI-gegenereerde desinformatie</li>
+                            <li>Crimineel misbruik van AI</li>
+                            <li>Praktijkvoorbeelden en case studies</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-time">12:15 - 13:00 (45 min)</div>
+                        <h3>Deel 4: Praktijk Challenge</h3>
+                        <ul>
+                            <li>Groepsopdrachten met realistische scenarios</li>
+                            <li>Ethische dilemma's bespreken</li>
+                            <li>Q&A sessie</li>
+                            <li>Wrap-up & next steps</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Belangrijke instructies voor deelnemers:</strong>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Breng je laptop mee (volledig opgeladen)</li>
+                        <li>Zorg voor stabiele internet connectie</li>
+                        <li>Maak van tevoren een account aan bij ChatGPT (gratis versie is voldoende)</li>
+                        <li><strong>LET OP:</strong> Geen vertrouwelijke politiedata gebruiken in AI tools!</li>
+                        <li>Gebruik alleen openbare informatie voor oefeningen</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- DEEL 1: AI FUNDAMENTALS -->
+        <div id="deel1" class="content-section">
+            <div class="module">
+                <h2>1️⃣ Deel 1: AI Fundamentals</h2>
+                <p><em>Duur: 60 minuten</em></p>
+
+                <h3>Wat is AI eigenlijk?</h3>
+                <div class="info-box">
+                    <strong>Simpele uitleg:</strong>
+                    <p>Artificial Intelligence (AI) is software die kan leren van data en patronen herkennen, zonder dat je elke regel expliciet programmeert. Denk aan het als een zeer geavanceerde "patroonherkenner" die steeds slimmer wordt.</p>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: #667eea; margin-bottom: 1rem;">🎥 Video: Wat is AI? (5 min)</h4>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px;">
+                        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                            src="https://www.youtube.com/embed/2ePf9rue1Ao" 
+                            title="What is AI?" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <h3>Belangrijke AI Concepten</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>🧠 Machine Learning</h4>
+                        <p>Computers die leren van data zonder expliciet geprogrammeerd te worden. Bijvoorbeeld: spam detectie, gezichtsherkenning.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>💬 Large Language Models (LLMs)</h4>
+                        <p>AI modellen getraind op enorme hoeveelheden tekst. Voorbeelden: ChatGPT, Claude, Gemini. Ze kunnen tekst begrijpen en genereren.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>🎨 Generative AI</h4>
+                        <p>AI die nieuwe content kan maken: tekst, afbeeldingen, video's, audio. Bijvoorbeeld: DALL-E, Midjourney, Sora.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>🔍 Computer Vision</h4>
+                        <p>AI die afbeeldingen en video's kan "zien" en begrijpen. Gebruikt in: gezichtsherkenning, kenteken herkenning, object detectie.</p>
+                    </div>
+                </div>
+
+                <h3>ChatGPT vs Claude vs Gemini - Wat zijn de verschillen?</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>ChatGPT (OpenAI)</h4>
+                        <p><strong>Beste voor:</strong> Algemene taken, code schrijven, creatieve content</p>
+                        <p><strong>Sterktes:</strong> Breed inzetbaar, snelle antwoorden</p>
+                        <p><strong>Zwaktes:</strong> Kan soms "hallucinate" (verzinnen van feiten)</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Claude (Anthropic)</h4>
+                        <p><strong>Beste voor:</strong> Lange documenten analyseren, veiligheid</p>
+                        <p><strong>Sterktes:</strong> Eerlijk over beperkingen, goede ethische guidelines</p>
+                        <p><strong>Zwaktes:</strong> Soms te voorzichtig</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>Gemini (Google)</h4>
+                        <p><strong>Beste voor:</strong> Zoeken, recente informatie</p>
+                        <p><strong>Sterktes:</strong> Toegang tot Google's data, multimodaal</p>
+                        <p><strong>Zwaktes:</strong> Minder consistent</p>
+                    </div>
+                </div>
+
+                <h3>Wat kan AI WEL en NIET?</h3>
+                <div class="grid-2">
+                    <div class="success-box">
+                        <h4>✅ Wat AI WEL kan:</h4>
+                        <ul class="checklist">
+                            <li>Grote hoeveelheden tekst samenvatten</li>
+                            <li>Patronen herkennen in data</li>
+                            <li>Teksten vertalen</li>
+                            <li>Vragen beantwoorden op basis van gegeven informatie</li>
+                            <li>Code schrijven en debuggen</li>
+                            <li>Creatieve content genereren</li>
+                        </ul>
+                    </div>
+
+                    <div class="danger-box">
+                        <h4>❌ Wat AI NIET kan:</h4>
+                        <ul>
+                            <li><strong>Real-time data:</strong> AI weet niks van "nu" (tenzij met internet)</li>
+                            <li><strong>100% betrouwbaar:</strong> Kan fouten maken en "hallucineren"</li>
+                            <li><strong>Ethisch oordelen:</strong> Heeft geen echt begrip van goed/fout</li>
+                            <li><strong>Context begrijpen:</strong> Mist echte wereld ervaring</li>
+                            <li><strong>Vertrouwelijk blijven:</strong> Alles wat je invoert wordt mogelijk opgeslagen</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exercise-box">
+                    <h4>🎯 Oefening 1: Je eerste AI conversatie (15 min)</h4>
+                    <p><strong>Opdracht:</strong> Open ChatGPT en probeer deze prompts:</p>
+                    <div class="prompt-example">
+1. "Leg uit wat phishing is alsof ik 10 jaar ben"
+
+2. "Vat deze nieuwsartikel samen in 3 bullet points: [plak artikel]"
+
+3. "Geef 5 manieren waarop criminelen social media misbruiken"
+                    </div>
+                    <p><strong>Let op:</strong> Gebruik alleen openbare informatie!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DEEL 2: AI TOOLS VOOR INTELLIGENCE -->
+        <div id="deel2" class="content-section">
+            <div class="module">
+                <h2>2️⃣ Deel 2: AI Tools voor Intelligence</h2>
+                <p><em>Duur: 45 minuten</em></p>
+
+                <h3>🎯 De Kunst van Prompting</h3>
+                <div class="info-box">
+                    <strong>Wat is een prompt?</strong>
+                    <p>Een prompt is de instructie die je aan AI geeft. Een goede prompt = beter resultaat!</p>
+                </div>
+
+                <h3>Prompting Framework: 5 Stappen</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>1️⃣ Rol</h4>
+                        <p>Geef AI een rol: "Je bent een cyber security expert"</p>
+                    </div>
+                    <div class="card">
+                        <h4>2️⃣ Context</h4>
+                        <p>Geef achtergrond: "We onderzoeken een phishing campagne"</p>
+                    </div>
+                    <div class="card">
+                        <h4>3️⃣ Taak</h4>
+                        <p>Wees specifiek: "Analyseer deze email headers"</p>
+                    </div>
+                    <div class="card">
+                        <h4>4️⃣ Format</h4>
+                        <p>Vraag om structuur: "Geef resultaat in tabel/bullets"</p>
+                    </div>
+                </div>
+
+                <h3>📝 Voorbeeld Prompts voor Intelligence</h3>
+
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: #667eea; margin-bottom: 1rem;">🎥 Video: ChatGPT Tutorial voor Professionals (10 min)</h4>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px;">
+                        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                            src="https://www.youtube.com/embed/JTxsNm9IdYU" 
+                            title="ChatGPT Complete Guide" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;"><em>Praktische gids over hoe je ChatGPT effectief gebruikt voor professioneel werk</em></p>
+                </div>
+
+                <div class="prompt-example">
+<strong>SLECHT:</strong> "Leg uit over cybercrime"
+
+<strong>GOED:</strong> "Je bent een intelligence analyst. Geef een gestructureerd overzicht van de 5 meest voorkomende cybercrime methoden in Nederland in 2024, met voor elk:
+- Beschrijving van de methode
+- Doelgroep
+- Preventie tips
+Presenteer dit in een tabel."
+                </div>
+
+                <div class="prompt-example">
+<strong>SLECHT:</strong> "Vat dit samen"
+
+<strong>GOED:</strong> "Vat het volgende nieuwsartikel samen voor een intelligence briefing. Focus op:
+1. Wie zijn betrokken?
+2. Wat is er gebeurd?
+3. Wanneer en waar?
+4. Mogelijk motieven
+5. Relevantie voor onze operatie
+
+Maximaal 200 woorden."
+                </div>
+
+                <h3>🛠️ Praktische AI Tools</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>ChatGPT</h4>
+                        <p>Algemene analyse, tekst samenvatten</p>
+                        <a href="https://chat.openai.com" target="_blank" class="tool-link">→ Open ChatGPT</a>
+                    </div>
+                    <div class="card">
+                        <h4>Claude</h4>
+                        <p>Lange documenten, veiligere optie</p>
+                        <a href="https://claude.ai" target="_blank" class="tool-link">→ Open Claude</a>
+                    </div>
+                    <div class="card">
+                        <h4>Perplexity</h4>
+                        <p>Zoeken met bronvermelding</p>
+                        <a href="https://perplexity.ai" target="_blank" class="tool-link">→ Open Perplexity</a>
+                    </div>
+                    <div class="card">
+                        <h4>Gemini</h4>
+                        <p>Google integratie, recente info</p>
+                        <a href="https://gemini.google.com" target="_blank" class="tool-link">→ Open Gemini</a>
+                    </div>
+                </div>
+
+                <div class="exercise-box">
+                    <h4>🎯 Oefening 2: OSINT met AI (20 min)</h4>
+                    <p><strong>Scenario:</strong> Je onderzoekt een verdachte website: "techdeals247[.]com"</p>
+                    <p><strong>Opdracht:</strong> Gebruik AI om:</p>
+                    <ol>
+                        <li>Te achterhalen wat WHOIS informatie is</li>
+                        <li>Te begrijpen hoe je fake webshops herkent</li>
+                        <li>Een checklist te maken voor website verificatie</li>
+                    </ol>
+                    <div class="prompt-example">
+Voorbeeld prompt:
+"Je bent een cyber security analist. Ik onderzoek een verdachte website. Maak een checklist van 10 punten om te controleren of een webshop legitiem is. Geef per punt ook uit hoe ik dit kan checken."
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Privacy & Veiligheid:</strong>
+                    <ul>
+                        <li>Voer NOOIT vertrouwelijke data in AI tools</li>
+                        <li>Gebruik AI alleen voor openbare informatie</li>
+                        <li>Verifieer AI output altijd met andere bronnen</li>
+                        <li>AI is een hulpmiddel, geen vervanger van menselijk oordeel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- DEEL 3: DARK SIDE OF AI -->
+        <div id="deel3" class="content-section">
+            <div class="module">
+                <h2>3️⃣ Deel 3: The Dark Side of AI</h2>
+                <p><em>Duur: 45 minuten</em></p>
+
+                <h3>🎭 Deepfakes - De Bedreiging</h3>
+                <div class="danger-box">
+                    <strong>Wat zijn Deepfakes?</strong>
+                    <p>AI-gegenereerde nep video's, audio of afbeeldingen die extreem realistisch lijken. Criminelen gebruiken dit voor:</p>
+                    <ul>
+                        <li>CEO fraude (nep videocalls)</li>
+                        <li>Politieke desinformatie</li>
+                        <li>Reputatieschade</li>
+                        <li>Identiteitsfraude</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: #667eea; margin-bottom: 1rem;">🎥 Video: Deepfakes Explained (6 min)</h4>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px;">
+                        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                            src="https://www.youtube.com/embed/gLoI9hAX9dw" 
+                            title="Deepfakes Explained" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;"><em>Let op de voorbeelden van politieke deepfakes en hoe realistisch ze zijn!</em></p>
+                </div>
+
+                <h3>🔍 Deepfakes Herkennen</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>👀 Visuele Tekenen</h4>
+                        <ul>
+                            <li>Onnatuurlijk knipperen (of helemaal niet)</li>
+                            <li>Vreemde gezichtsuitdrukkingen</li>
+                            <li>Wazig rond randen van gezicht</li>
+                            <li>Inconsistente belichting</li>
+                            <li>Tanden/mond zien er vreemd uit</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🎧 Audio Tekenen</h4>
+                        <ul>
+                            <li>Robotachtige stemklank</li>
+                            <li>Onnatuurlijke pauzes</li>
+                            <li>Inconsistente achtergrondgeluiden</li>
+                            <li>Geen lipsync met video</li>
+                            <li>Vreemde intonatie</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>🚨 Crimineel Misbruik van AI</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>💰 Financiële Fraude</h4>
+                        <p><strong>Methode:</strong> AI-gegenereerde stem van CEO belt CFO om geld over te maken</p>
+                        <p><strong>Real case:</strong> €220.000 gestolen in 2019 via AI voice cloning</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>📧 Phishing 2.0</h4>
+                        <p><strong>Methode:</strong> ChatGPT schrijft perfecte phishing emails zonder spelfouten</p>
+                        <p><strong>Impact:</strong> Veel geloofwaardiger en moeilijker te herkennen</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>🎭 Social Engineering</h4>
+                        <p><strong>Methode:</strong> AI analyseert social media voor gepersonaliseerde aanvallen</p>
+                        <p><strong>Risico:</strong> Zeer gerichte spear-phishing aanvallen</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>📰 Desinformatie</h4>
+                        <p><strong>Methode:</strong> AI genereert nepnieuws, fake accounts, propaganda</p>
+                        <p><strong>Gevaar:</strong> Polarisatie, ondermijning democratie</p>
+                    </div>
+                </div>
+
+                <h3>📚 Real World Cases</h3>
+                <div class="info-box">
+                    <h4>Case 1: De Hong Kong Bank Heist (2024)</h4>
+                    <p>Criminelen gebruikten deepfake video tijdens een Zoom call om zich voor te doen als de CFO. Ze overtuigden een werknemer om $25 miljoen over te maken. De deepfake was zo goed dat meerdere collega's in de call niks doorhadden.</p>
+                    <p><strong>Lesson learned:</strong> Verifieer altijd geldverzoeken via een tweede kanaal!</p>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: #667eea; margin-bottom: 1rem;">🎥 Video: Real Deepfake Scams (8 min)</h4>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px;">
+                        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                            src="https://www.youtube.com/embed/oxXpB9pSETo" 
+                            title="AI Scams and Deepfakes" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;"><em>CNBC documentaire over real-world AI scams en deepfake fraude</em></p>
+                </div>
+
+                <div class="info-box">
+                    <h4>Case 2: Political Deepfake (2024)</h4>
+                    <p>Vlak voor verkiezingen verscheen een deepfake video van een politicus die racistische uitspraken deed. Miljoen views voordat het als fake werd ontmaskerd. Schade aan reputatie was al aangericht.</p>
+                    <p><strong>Lesson learned:</strong> Verspreid niet meteen schokkende content, verifieer eerst!</p>
+                </div>
+
+                <div class="exercise-box">
+                    <h4>🎯 Oefening 3: Deepfake Detective (15 min)</h4>
+                    <p><strong>Opdracht:</strong> Gebruik ChatGPT om een checklist te maken</p>
+                    <div class="prompt-example">
+Prompt:
+"Je bent een digital forensics expert. Maak een praktische checklist van 15 punten om deepfake video's te herkennen. Verdeel in categorieën: visueel, audio, context, en metadata. Geef per punt praktische tips."
+                    </div>
+                    <p><strong>Groepsopdracht:</strong> Bespreek met je tafelgenoten welke deepfake scenario's het gevaarlijkst zijn voor jullie werk.</p>
+                </div>
+
+                <h3>🛡️ Bescherming tegen AI-dreigingen</h3>
+                <ul class="checklist">
+                    <li>Implementeer multi-factor authenticatie (MFA) overal</li>
+                    <li>Verifieer altijd ongebruikelijke verzoeken via tweede kanaal</li>
+                    <li>Train medewerkers in deepfake herkenning</li>
+                    <li>Gebruik deepfake detectie tools (bijv: Sentinel, Deepware)</li>
+                    <li>Wees kritisch op social media - niet alles is echt</li>
+                    <li>Check metadata en bronnen van content</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DEEL 4: PRAKTIJK CHALLENGES -->
+        <div id="deel4" class="content-section">
+            <div class="module">
+                <h2>4️⃣ Deel 4: Praktijk Challenges</h2>
+                <p><em>Duur: 45 minuten</em></p>
+
+                <div class="exercise-box">
+                    <h4>🎯 Challenge 1: Intelligence Briefing (20 min)</h4>
+                    <p><strong>Scenario:</strong> Je moet binnen 15 minuten een briefing maken over "AI-gedreven cybercrime in 2024"</p>
+                    
+                    <p><strong>Opdracht (groepen van 2-3):</strong></p>
+                    <ol>
+                        <li>Gebruik AI (ChatGPT/Claude) om informatie te verzamelen</li>
+                        <li>Maak een 1-pagina briefing met:
+                            <ul>
+                                <li>Top 5 AI-cybercrime trends</li>
+                                <li>Risico-analyse per trend</li>
+                                <li>Aanbevelingen</li>
+                            </ul>
+                        </li>
+                        <li>Presenteer je bevindingen (2 min per groep)</li>
+                    </ol>
+
+                    <div class="prompt-example">
+Voorbeeld startprompt:
+"Je bent een intelligence analyst. Analyseer de top 5 AI-gedreven cybercrime trends in 2024. Geef per trend:
+1. Beschrijving van de methode
+2. Wie zijn de doelwitten
+3. Risico niveau (laag/midden/hoog)
+4. Preventie maatregelen
+
+Format: Tabel met deze kolommen."
+                    </div>
+                </div>
+
+                <div class="exercise-box">
+                    <h4>🎯 Challenge 2: Phishing Email Analyse (15 min)</h4>
+                    <p><strong>Scenario:</strong> Je krijgt een verdachte email. Is het phishing?</p>
+                    
+                    <div style="background: white; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 5px; margin: 1rem 0;">
+                        <strong>Van:</strong> security@paylpal-verify.com<br>
+                        <strong>Onderwerp:</strong> Urgent: Verify your account within 24 hours<br>
+                        <strong>Bericht:</strong><br>
+                        <em>"Dear valued customer,<br><br>
+                        We have detected unusual activity on your account. To prevent suspension, please verify your identity immediately by clicking the link below:<br><br>
+                        https://paypal-secure-login.com/verify<br><br>
+                        Failure to verify within 24 hours will result in permanent account closure.<br><br>
+                        Best regards,<br>
+                        PayPal Security Team"</em>
+                    </div>
+
+                    <p><strong>Opdracht:</strong> Gebruik AI om:</p>
+                    <ol>
+                        <li>De phishing indicatoren te identificeren</li>
+                        <li>Een rapport te maken voor collega's</li>
+                        <li>Preventietips te genereren</li>
+                    </ol>
+
+                    <div class="prompt-example">
+Prompt:
+"Je bent een cybersecurity expert. Analyseer deze email op phishing indicatoren. Geef:
+1. Alle red flags (met uitleg)
+2. Welke social engineering tactieken worden gebruikt
+3. Wat zou een slachtoffer moeten doen
+4. 5 tips om dit soort emails te herkennen
+
+[Plak email hier]"
+                    </div>
+                </div>
+
+                <div class="exercise-box">
+                    <h4>🎯 Challenge 3: Ethisch Dilemma (10 min)</h4>
+                    <p><strong>Scenario:</strong> Je hebt een AI tool die met 95% zekerheid kan voorspellen of iemand crimineel gedrag gaat vertonen, gebaseerd op social media posts.</p>
+                    
+                    <p><strong>Discussievragen:</strong></p>
+                    <ul>
+                        <li>Zou je deze tool gebruiken? Waarom wel/niet?</li>
+                        <li>Wat zijn de privacy implicaties?</li>
+                        <li>Wat als de tool 5% van de tijd fout is?</li>
+                        <li>Hoe balanceer je veiligheid vs privacy?</li>
+                    </ul>
+
+                    <p><strong>Groepsdiscussie:</strong> Bespreek in kleine groepen (5 min) en deel conclusies met iedereen</p>
+                </div>
+
+                <h3>📋 Wrap-up Checklist</h3>
+                <div class="info-box">
+                    <h4>✅ Wat je nu kunt:</h4>
+                    <ul class="checklist">
+                        <li>AI begrijpen en effectief gebruiken</li>
+                        <li>Goede prompts schrijven voor intelligence werk</li>
+                        <li>Deepfakes herkennen</li>
+                        <li>AI-dreigingen identificeren</li>
+                        <li>Ethische overwegingen maken</li>
+                    </ul>
+                </div>
+
+                <h3>🚀 Next Steps</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>📚 Blijf Leren</h4>
+                        <ul>
+                            <li>Experimenteer dagelijks met AI tools</li>
+                            <li>Volg AI nieuws (bijv: The AI Journal)</li>
+                            <li>Deel kennis met collega's</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4>⚠️ Blijf Alert</h4>
+                        <ul>
+                            <li>Nieuwe AI-dreigingen ontstaan constant</li>
+                            <li>Deepfakes worden steeds beter</li>
+                            <li>Update regelmatig je kennis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESOURCES SECTIE -->
+        <div id="resources" class="content-section">
+            <div class="module">
+                <h2>📚 Resources & Tools</h2>
+
+                <h3>🤖 AI Tools (Gratis)</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>ChatGPT</h4>
+                        <p>Meest populaire AI chatbot</p>
+                        <a href="https://chat.openai.com" target="_blank" class="tool-link">→ Naar ChatGPT</a>
+                    </div>
+
+                    <div class="card">
+                        <h4>Claude</h4>
+                        <p>Veiliger, langere documenten</p>
+                        <a href="https://claude.ai" target="_blank" class="tool-link">→ Naar Claude</a>
+                    </div>
+
+                    <div class="card">
+                        <h4>Perplexity AI</h4>
+                        <p>AI-zoekmachine met bronnen</p>
+                        <a href="https://perplexity.ai" target="_blank" class="tool-link">→ Naar Perplexity</a>
+                    </div>
+
+                    <div class="card">
+                        <h4>Google Gemini</h4>
+                        <p>Google's AI assistant</p>
+                        <a href="https://gemini.google.com" target="_blank" class="tool-link">→ Naar Gemini</a>
+                    </div>
+                </div>
+
+                <h3>🔍 Deepfake Detectie Tools</h3>
+                <ul>
+                    <li><strong>Sensity AI:</strong> Deepfake detectie platform</li>
+                    <li><strong>Microsoft Video Authenticator:</strong> Analyseert video's op manipulatie</li>
+                    <li><strong>Intel FakeCatcher:</strong> Real-time deepfake detector</li>
+                    <li><strong>Deepware Scanner:</strong> Gratis online deepfake scanner</li>
+                </ul>
+
+                <h3>📖 Aanbevolen Lectuur</h3>
+                <div class="info-box">
+                    <ul>
+                        <li><strong>"The AI Revolution"</strong> - Praktische gids voor professionals</li>
+                        <li><strong>NIST AI Risk Management Framework</strong> - Officiële guidelines</li>
+                        <li><strong>EU AI Act</strong> - Europese AI wetgeving (2024)</li>
+                        <li><strong>OSINT met AI blog series</strong> - Bellingcat.com</li>
+                    </ul>
+                </div>
+
+                <h3>⚖️ Wetten & Regelgeving</h3>
+                <div class="warning-box">
+                    <h4>Belangrijk om te weten:</h4>
+                    <ul>
+                        <li><strong>AVG/GDPR:</strong> Privacy wetgeving is van toepassing op AI</li>
+                        <li><strong>EU AI Act (2024):</strong> Nieuwe regelgeving voor high-risk AI</li>
+                        <li><strong>Politie Data:</strong> Strenge regels voor gebruik van persoons gegevens</li>
+                        <li><strong>Bewijswaarde:</strong> AI-gegenereerd bewijs heeft beperkte juridische waarde</li>
+                    </ul>
+                </div>
+
+                <h3>💡 Best Practices</h3>
+                <ul class="checklist">
+                    <li>Verifieer AI output altijd met meerdere bronnen</li>
+                    <li>Document hoe je AI hebt gebruikt in onderzoeken</li>
+                    <li>Gebruik AI als hulpmiddel, niet als vervanger</li>
+                    <li>Blijf kritisch - AI kan vooroordelen hebben</li>
+                    <li>Vraag bij twijfel altijd een second opinion</li>
+                    <li>Houd je kennis up-to-date (AI evolueert snel!)</li>
+                </ul>
+
+                <h3>📞 Contact & Vragen</h3>
+                <div class="info-box">
+                    <p><strong>Na de training:</strong></p>
+                    <ul>
+                        <li>Deel deze pagina met collega's</li>
+                        <li>Bookmark deze pagina voor referentie</li>
+                        <li>Experimenteer met de tools</li>
+                        <li>Stel vragen via [jouw contact info]</li>
+                    </ul>
+                </div>
+
+                <div class="success-box" style="text-align: center; margin-top: 2rem;">
+                    <h3>🎓 Certificaat</h3>
+                    <p style="font-size: 1.2rem; margin: 1rem 0;">Je hebt de training <strong>"AI voor Intelligence Professionals"</strong> succesvol afgerond!</p>
+                    <p>Blijf leren, blijf nieuwsgierig, en gebruik AI verantwoord! 🚀</p>
+                    <a href="certificaat.html" target="_blank" class="btn-primary" style="margin-top: 1.5rem; display: inline-block;">
+                        🎓 Genereer Jouw Certificaat
+                    </a>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">
+                        Klik op de button om je persoonlijke training certificaat te genereren en downloaden
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Quiz functionality (optional)
+        function checkQuizAnswer(questionId, correctAnswer, selectedAnswer) {
+            const options = document.querySelectorAll(`[data-question="${questionId}"]`);
+            
+            options.forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+                
+                if (option.dataset.answer === correctAnswer) {
+                    option.classList.add('correct');
+                }
+                
+                if (option.dataset.answer === selectedAnswer && selectedAnswer !== correctAnswer) {
+                    option.classList.add('incorrect');
+                }
+            });
+        }
+
+        // Print function for handouts
+        function printHandout() {
+            window.print();
+        }
+
+        // Initialize
+        console.log('AI Training Platform Loaded - Ready for Donderdag! 🚀');
+    </script>
+</body>
+</html>
