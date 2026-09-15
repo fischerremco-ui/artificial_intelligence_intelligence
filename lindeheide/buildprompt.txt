@@ -1,0 +1,22 @@
+Maak één zelfstandig HTML-bestand voor een Nederlandstalig intelligence-dashboard met de aangeleverde fictieve Lindeheide-dataset.
+
+Toon:
+- bronberichten;
+- een chronologische tijdlijn;
+- filters op brontype;
+- bron-ID, brontype en onzekerheid/status;
+- openstaande informatievragen.
+
+Maak visueel duidelijk onderscheid tussen bronclaims, officiële informatie en directe observaties.
+
+Belangrijk:
+- voeg geen feiten toe;
+- verzin geen betrouwbaarheidsscores of confidence-percentages;
+- een aankondiging of ontkenning bewijst geen feitelijke opkomst;
+- online berichtvolume is geen bezoekersaantal;
+- “70–90 personen zichtbaar” is niet hetzelfde als “70–90 personen aanwezig”;
+- gebruik duidelijke labels en goed contrast;
+- laat knoppen en filters met het toetsenbord werken;
+- maak het dashboard ook bruikbaar op smartphoneformaat.
+
+Geef alleen het complete werkende HTML-bestand terug.
